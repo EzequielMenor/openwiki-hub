@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>OpenWiki Hub</title>
+<link rel="stylesheet" href="styles.css" />
+<script defer src="https://cdn.jsdelivr.net/npm/marked@13.0.3/marked.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+<script defer src="app.js"></script>
+</head>
+<body>
+<aside id="sidebar">
+  <header>
+    <h1>📚 OpenWiki Hub</h1>
+    <p id="stats"></p>
+  </header>
+  <nav id="wikis"></nav>
+  <footer>
+    <small>↻ corre <code>owhu</code> para refrescar</small>
+    <small id="last-build"></small>
+  </footer>
+</aside>
+<main id="content">
+  <div class="placeholder">
+    <h2>Pick a wiki from the left</h2>
+    <p>If the list is empty, run <code>owhub rebuild</code> in your terminal.</p>
+  </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Pre-commit hook installed globally so every `git init` picks it up.
+# Regenerates the openwiki/ folder before each commit, but does NOT auto-add
+# the changes — the developer decides whether to commit them.
+#
+# If openwiki fails (no API key, API down, no openwiki/ folder yet) the commit
+# proceeds normally.
+
+openwiki --update -p "Update wiki with staged changes" --modelId MiniMax-M3 2>/dev/null || true
