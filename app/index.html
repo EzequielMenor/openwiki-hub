@@ -803,6 +803,7 @@
       var flat = [];
       MOCK.projects.forEach(function (proj) {
         proj.files.forEach(function (f) {
+          // path from wikis.json includes "wikis/" prefix (it's the HTTP path)
           flat.push({ project: proj.name, name: f.name, label: f.label, path: f.path });
         });
       });
@@ -976,11 +977,13 @@
        NAVIGATION
        =========================================================== */
     function selectFile(project, filename) {
-      var path = project + '/' + filename;
+      // project + filename arrive from the click handler. The HTTP path lives in
+      // wikis.json as "wikis/<project>/<filename>", so we build the full path here.
       var flat = getFlatFiles();
+      var httpPath = 'wikis/' + project + '/' + filename;
       var meta = null;
       for (var i = 0; i < flat.length; i++) {
-        if (flat[i].path === path) { meta = flat[i]; break; }
+        if (flat[i].path === httpPath) { meta = flat[i]; break; }
       }
       if (!meta) return;
 
@@ -994,7 +997,7 @@
       closeSidebar();
 
       // fetch the markdown
-      fetch('/' + path)
+      fetch('/' + httpPath)
         .then(function (res) {
           if (!res.ok) throw new Error('HTTP ' + res.status);
           return res.text();
